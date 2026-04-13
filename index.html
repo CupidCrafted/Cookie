@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: #6b0f1a; /* Burgundy */
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .container {
+        max-width: 500px;
+        padding: 20px;
+    }
+
+    h1, p {
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+
+    .show {
+        opacity: 1;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        background: #fff;
+        color: #6b0f1a;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #f3d1d6;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1 id="text"></h1>
+    <button id="btn" onclick="nextStep()">Start</button>
+</div>
+
+<script>
+const steps = [
+    "Something’s missing...",
+    "There’s no Joy in my life anymore.",
+    "Because I messed up.",
+    "I didn’t treat you right.",
+    "I see it now.",
+    "It hasn’t felt like home without you...",
+    "I miss you, Cookie.",
+    "Not just because I miss you...",
+    "But because I understand what I did wrong.",
+    "And I’m working on it.",
+    "I’m sorry.",
+    "For hurting you.",
+    "For not loving you the way you deserved.",
+    "There hasn’t been Joy in my life since you left...",
+    "I don’t just want you back...",
+    "I want to be better for you.",
+    "Cookie… can we try again?"
+];
+
+let index = -1;
+
+function typeText(text, element, speed = 40) {
+    element.innerHTML = "";
+    let i = 0;
+
+    function typing() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+        }
+    }
+
+    typing();
+}
+
+function nextStep() {
+    index++;
+
+    const textEl = document.getElementById("text");
+    const btn = document.getElementById("btn");
+
+    if (index < steps.length) {
+        typeText(steps[index], textEl);
+        textEl.classList.add("show");
+
+        btn.innerText = "Next";
+    } else {
+        textEl.innerHTML = "I’ll be here… whenever you’re ready.";
+        btn.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
